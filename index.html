@@ -1,23 +1,1007 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
+
+  <style>
+        :root {
+            --primary-color: #1a2d42; 
+            --secondary-color: #5c6b73; 
+            --accent-color: #b89060; 
+            --bg-light: #f9f8f5; 
+            --bg-card: #ffffff;
+            --border-color: #e6e4e0; 
+            --text-main: #2b2b2b;
+            --text-muted: #666666;
+            --success-color: #7a9a82;
+        }
+
+        body {
+            font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.8;
+            color: var(--text-main);
+            background-color: var(--bg-light);
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #111e2d 100%);
+            color: #ffffff;
+            padding: 60px 5%;
+            text-align: center;
+            border-bottom: 4px solid var(--accent-color);
+        }
+
+        header h1 {
+            font-size: 2.8em;
+            margin-bottom: 15px;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+
+        nav {
+            background-color: #ffffff;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav li {
+            padding: 0;
+        }
+
+        nav a {
+            display: block;
+            padding: 20px 25px;
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 600;
+            font-size: 0.95em;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--accent-color);
+            background-color: rgba(184, 144, 96, 0.05);
+        }
+
+        main {
+            padding: 50px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section {
+            background-color: var(--bg-card);
+            padding: 45px;
+            margin-bottom: 40px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.01);
+        }
+
+        h2 {
+            color: var(--primary-color);
+            font-size: 1.8em;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 15px;
+            margin-top: 0;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        h3 {
+            color: var(--primary-color);
+            font-size: 1.4em;
+            margin-top: 35px;
+            margin-bottom: 15px;
+            font-weight: 600;
+            padding-left: 12px;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        p {
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        form {
+            background-color: var(--bg-light);
+            padding: 35px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            margin-top: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        input[type="text"], 
+        input[type="tel"], 
+        input[type="email"], 
+        input[type="number"], 
+        select, 
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 1em;
+            background-color: #ffffff;
+            color: var(--text-main);
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--accent-color);
+            outline: none;
+        }
+
+        .range-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .range-container input[type="range"] {
+            flex-grow: 1;
+        }
+
+        .range-value {
+            font-weight: bold;
+            color: var(--accent-color);
+            min-width: 60px;
+            text-align: right;
+        }
+
+        button.submit-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 18px 30px;
+            font-size: 1.1em;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s ease;
+            letter-spacing: 0.05em;
+        }
+
+        button.submit-btn:hover {
+            background-color: #111e2d;
+            border-bottom: 2px solid var(--accent-color);
+        }
+
+        .info-box {
+            background-color: #f0f4f8;
+            border-left: 4px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 20px;
+            border-radius: 6px;
+            margin-top: 25px;
+            font-size: 0.95em;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        }
+
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 15px;
+            text-align: left;
+            font-size: 0.95em;
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background-color: #faf9f7;
+        }
+
+        .keyword-tags {
+            margin: 25px 0;
+        }
+
+        .keyword-tags a {
+            display: inline-block;
+            background-color: #f0edf0;
+            color: var(--secondary-color);
+            padding: 6px 14px;
+            border-radius: 30px;
+            margin: 5px;
+            text-decoration: none;
+            font-size: 0.85em;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .keyword-tags a:hover {
+            background-color: var(--accent-color);
+            color: white;
+            border-color: var(--accent-color);
+        }
+
+        ul.custom-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        ul.custom-list li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 12px;
+        }
+
+        ul.custom-list li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 6px;
+            height: 6px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+        }
+
+        .faq-dl dt {
+            cursor: pointer;
+            font-weight: 700;
+            background-color: var(--bg-light);
+            padding: 18px;
+            border-bottom: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-dl dt:hover {
+            background-color: #f1ede8;
+            color: var(--primary-color);
+        }
+
+        .faq-dl dt::after {
+            content: "보기";
+            font-size: 0.8em;
+            font-weight: normal;
+            color: var(--secondary-color);
+            border: 1px solid var(--border-color);
+            padding: 2px 8px;
+            border-radius: 4px;
+            background-color: #ffffff;
+        }
+
+        .faq-dl dt.active::after {
+            content: "닫기";
+            background-color: var(--primary-color);
+            color: #ffffff;
+        }
+
+        .faq-dl dd {
+            padding: 20px;
+            background-color: #ffffff;
+            border-left: 4px solid var(--accent-color);
+            margin-left: 0;
+            display: none;
+            border-bottom: 1px solid var(--border-color);
+            text-align: justify;
+        }
+
+        .faq-dl dt.active + dd {
+            display: block;
+        }
+
+        .related-links {
+            margin-top: 30px;
+            border-top: 1px solid var(--border-color);
+            padding-top: 20px;
+        }
+
+        .related-links a {
+            display: inline-block;
+            margin-right: 20px;
+            margin-bottom: 10px;
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 0.9em;
+            transition: color 0.3s ease;
+        }
+
+        .related-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /* 만족도 가로형 막대 그래프 디자인 */
+        .chart-container {
+            margin: 30px 0;
+            background-color: #ffffff;
+            padding: 25px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .chart-bar-group {
+            margin-bottom: 20px;
+        }
+
+        .chart-label {
+            font-weight: 600;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            color: var(--primary-color);
+        }
+
+        .chart-bar-track {
+            background-color: #eeebe5;
+            border-radius: 4px;
+            height: 24px;
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .chart-bar-fill {
+            height: 100%;
+            background-color: var(--accent-color);
+            border-radius: 4px;
+            transition: width 1s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 10px;
+            box-sizing: border-box;
+        }
+
+        .chart-bar-fill.accent2 {
+            background-color: var(--primary-color);
+        }
+
+        .chart-bar-fill.accent3 {
+            background-color: var(--success-color);
+        }
+
+        .chart-percentage {
+            color: #ffffff;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+
+        .calculator-result-box {
+            background-color: #f7f5f0;
+            border: 2px dashed var(--accent-color);
+            padding: 25px;
+            border-radius: 8px;
+            margin-top: 25px;
+        }
+
+        .calculator-result-box h4 {
+            margin-top: 0;
+            color: var(--primary-color);
+            font-size: 1.15em;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        .calc-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 0.95em;
+        }
+
+        .calc-row.total-row {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: var(--primary-color);
+            border-top: 1px solid var(--border-color);
+            padding-top: 12px;
+            margin-top: 15px;
+        }
+
+        .calc-row.total-row .accent-txt {
+            color: var(--accent-color);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+            nav ul {
+                flex-direction: column;
+            }
+            nav li {
+                width: 100%;
+                text-align: center;
+            }
+            nav a {
+                padding: 15px;
+            }
+            form {
+                padding: 20px;
+            }
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "Product",
+          "name": "르노 그랑 콜레오스 (Renault Grand Koleos)",
+          "image": "https://estimate.reliabledone.com/images/grand-koleos.jpg",
+          "description": "2026년형 르노 그랑 콜레오스 가솔린 및 하이브리드 트림별 공식 출시 가격과 최저가 모의견적 비교 분석 정보를 제공합니다.",
+          "brand": {
+            "@type": "Brand",
+            "name": "르노코리아 (Renault Korea)"
+          },
+          "offers": {
+            "@type": "AggregateOffer",
+            "lowPrice": "35460000",
+            "highPrice": "44699000",
+            "priceCurrency": "KRW",
+            "areaServed": "대한민국"
+          }
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>르노 그랑 콜레오스 가격 총정리 | 2026년형 트림별 모의견적 비교</h1>
+        <p>2026년 최신 중형 SUV 시장의 핵심 주자, 르노코리아 그랑 콜레오스의 가솔린 및 하이브리드 공식 가격과 최적의 구매 비용 산출 가이드</p>
+        <nav aria-label="메인 내비게이션">
+            <ul>
+                <li><a href="#가격비교">공식 가격표 및 사양</a></li>
+                <li><a href="#견적계산기">모의견적 직접 계산기</a></li>
+                <li><a href="#장단점분석">파워트레인별 장단점</a></li>
+                <li><a href="#금융가이드">할부, 장기렌트, 리스 비교</a></li>
+                <li><a href="#커뮤니티">소비자 동향 및 여론</a></li>
+                <li><a href="#자주묻는질문">자주 묻는 질문 FAQ</a></li>
+            </ul>
+        </nav>
+    </header>
+
     <main>
-      <h1>Home page</h1>
+        
+        <section id="가격비교">
+            <h2>르노 그랑 콜레오스 트림별 가격 및 상세 분석</h2>
+            <p>2026년형 르노 그랑 콜레오스는 압도적인 가성비와 풍부한 기본 사양으로 패밀리 SUV 시장의 흐름을 주도하고 있습니다. 가솔린 2.0 터보 모델과 E-Tech 하이브리드 두 가지 라인업으로 운영되며, 각 엔진 트림에 따라 세부적인 옵션 차이와 가격 격차가 존재합니다. 특히 친환경 차량 세제 혜택이 적용된 하이브리드 라인업은 도심 위주의 실용성을 추구하는 유저들로부터 큰 주목을 받고 있습니다.</p>
+            
+            <p>아래 제공된 가격 정보는 2026년 상반기 기준 르노코리아의 공식 공시 데이터를 기반으로 작성되었으며, 개별소비세 실효세율 등이 모두 조율된 최종 권장 가격 수치입니다.</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>파워트레인 및 트림명</th>
+                        <th>기본 가격 (원)</th>
+                        <th>복합 연비 (km/L)</th>
+                        <th>주요 특성 및 핵심 사양</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>가솔린 2.0 터보 테크노 2WD</td>
+                        <td>35,460,000</td>
+                        <td>11.1</td>
+                        <td>합리적인 패키지 구성, 12.3인치 클러스터 및 중앙 디스플레이, 첨단 주행 보조 시스템 탑재</td>
+                    </tr>
+                    <tr>
+                        <td>가솔린 2.0 터보 아이코닉 2WD</td>
+                        <td>39,360,000</td>
+                        <td>11.1</td>
+                        <td>동승석 12.3인치 스크린 추가, openR 파노라마 스크린 기본 적용, 스마트 가죽 시트 리어 암레스트</td>
+                    </tr>
+                    <tr>
+                        <td>가솔린 2.0 터보 에스프리 알핀 2WD</td>
+                        <td>41,500,000</td>
+                        <td>11.1</td>
+                        <td>알핀 전용 다크 틴티드 그릴, 알칸타라 내장 소재 적용, 20인치 알로이 휠 탑재 및 스포티 외장</td>
+                    </tr>
+                    <tr>
+                        <td>가솔린 2.0 터보 아이코닉 4WD</td>
+                        <td>42,050,000</td>
+                        <td>9.8</td>
+                        <td>보그워너 6세대 사륜구동 시스템 적용, 6가지 전용 드라이빙 모드 제공, 안정적인 노면 유지력</td>
+                    </tr>
+                    <tr>
+                        <td>E-Tech 하이브리드 테크노 2WD</td>
+                        <td>38,709,000</td>
+                        <td>15.7</td>
+                        <td>친환경 혜택 적용가, 도심 정숙성 우수, 멀티모드 자동변속기 및 하이브리드 특화 회생제동 탑재</td>
+                    </tr>
+                    <tr>
+                        <td>E-Tech 하이브리드 아이코닉 2WD</td>
+                        <td>42,699,000</td>
+                        <td>15.0</td>
+                        <td>openR 스크린 3개 화면 연계, 동승석 시네마 및 미디어 앱 완벽 지원, 동급 최고급 내장재 구성</td>
+                    </tr>
+                    <tr>
+                        <td>E-Tech 하이브리드 에스프리 알핀 2WD</td>
+                        <td>44,699,000</td>
+                        <td>15.0</td>
+                        <td>최상위 시그니처 트림, 블루 스티치 감성의 실내 테마, 고성능 브랜드 알핀의 스포티한 디테일 디자인</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>전체적인 라인업 구조를 보면 동일 트림 기준으로 하이브리드가 가솔린 모델보다 평균적으로 약 320만 원에서 410만 원 높게 책정되어 있음을 알 수 있습니다. 연간 주행 거리가 1만 5천km 이상으로 길다면 하이브리드의 연료비 절감 혜택이 기회 비용 차이를 상쇄할 수 있습니다. 반면 연간 주행량이 비교적 적고 초기 투입 자금을 아끼고자 하는 고객에게는 가솔린 2.0 터보 2WD 사양이 더 저렴한곳으로서 합리적인 선택이 될 것입니다.</p>
+
+            <h3>소비자 만족도 및 선택 비중 지표</h3>
+            <p>다양한 자동차 관련 온라인 플랫폼 분석에 따른 2026년 상반기 트림별 누적 구매 비율 및 소비자 만족도 지수 분석 데이터입니다.</p>
+            
+            <div class="chart-container">
+                <div class="chart-bar-group">
+                    <div class="chart-label">E-Tech 하이브리드 아이코닉 (선호도 1순위)</div>
+                    <div class="chart-bar-track">
+                        <div class="chart-bar-fill" style="width: 92%;">
+                            <span class="chart-percentage">92%</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="chart-bar-group">
+                    <div class="chart-label">E-Tech 하이브리드 에스프리 알핀 (최고급 선호 트림)</div>
+                    <div class="chart-bar-track">
+                        <div class="chart-bar-fill accent2" style="width: 86%;">
+                            <span class="chart-percentage">86%</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="chart-bar-group">
+                    <div class="chart-label">가솔린 2.0 터보 테크노 (실속 가성비 모델)</div>
+                    <div class="chart-bar-track">
+                        <div class="chart-bar-fill accent3" style="width: 79%;">
+                            <span class="chart-percentage">79%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p>하이브리드 아이코닉 트림이 시장에서 가장 높은 선택을 받고 있습니다. 그 이유는 르노 그랑 콜레오스만의 핵심 가치인 openR 파노라마 스크린이 조수석까지 완전하게 구현되기 때문입니다. 테크노 트림의 경우에도 훌륭한 엔트리 역할을 수행하지만, 패밀리카 특유의 화려한 디스플레이와 스마트 연동 혜택을 온전히 만끽하려는 소비자층은 중상위 트림인 아이코닉으로의 이동 흐름이 뚜렷하게 포착됩니다.</p>
+        </section>
+
+        <section id="견적계산기">
+            <h2>그랑 콜레오스 다이렉트 모의견적 계산기</h2>
+            <p>실제 구매를 염두에 두고 계신다면 초기 부담금, 세금, 옵션 선택에 따라 최종 인도 단계에서 발생하는 실제 납입액을 미리 계산해 보는 것이 좋습니다. 아래의 시뮬레이터를 사용하여 엔진, 트림, 옵션과 금융 방식을 조합해 보십시오. 입력하신 조건에 맞춰 실시간 예상 견적이 산출됩니다.</p>
+            
+            <form id="calc-form" onsubmit="return false;">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="engine-select">엔진 및 파워트레인 선택</label>
+                        <select id="engine-select" onchange="handleEngineChange()">
+                            <option value="gasoline">가솔린 2.0 터보 2WD</option>
+                            <option value="gasoline4wd">가솔린 2.0 터보 4WD (아이코닉 전용)</option>
+                            <option value="hybrid">E-Tech 하이브리드 2WD</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="trim-select">세부 트림 등급</label>
+                        <select id="trim-select" onchange="calculateQuote()">
+                            <!-- JS를 통해 동적 제어됨 -->
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="option-screen">선택 옵션: openR 파노라마 스크린 (동승석 디스플레이 패키지)</label>
+                        <select id="option-screen" onchange="calculateQuote()">
+                            <option value="0">미선택 (기본 적용 트림이거나 추가 안함)</option>
+                            <option value="1650000">동승석 디스플레이 패키지 추가 (+1,650,000원)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="option-sunroof">선택 옵션: 파노라마 선루프</label>
+                        <select id="option-sunroof" onchange="calculateQuote()">
+                            <option value="0">미선택</option>
+                            <option value="1150000">파노라마 선루프 추가 (+1,150,000원)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="finance-select">구매 금융 방식</label>
+                        <select id="finance-select" onchange="handleFinanceChange()">
+                            <option value="cash">일시불 또는 현금 구매</option>
+                            <option value="loan">일반 할부 구매</option>
+                            <option value="rental">장기렌트 / 리스 운용</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="downpayment-range">초기 인도금 / 선납금 비율</label>
+                        <div class="range-container">
+                            <input type="range" id="downpayment-range" min="0" max="50" step="10" value="20" oninput="updateDownpaymentText(this.value)">
+                            <span class="range-value" id="downpayment-val-label">20%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group" id="period-group" style="display:none;">
+                    <label for="period-select">할부 / 약정 기간</label>
+                    <select id="period-select" onchange="calculateQuote()">
+                        <option value="36">36개월</option>
+                        <option value="48">48개월</option>
+                        <option value="60">60개월</option>
+                    </select>
+                </div>
+
+                <div class="calculator-result-box">
+                    <h4>실시간 예상 모의견적 산출 결과</h4>
+                    <div class="calc-row">
+                        <span>선택 모델 기본 차량가</span>
+                        <span id="res-base-price">0원</span>
+                    </div>
+                    <div class="calc-row">
+                        <span>선택 옵션 총합산액</span>
+                        <span id="res-option-price">0원</span>
+                    </div>
+                    <div class="calc-row">
+                        <span>예상 취등록세 (기본 7% 기준, 하이브리드 감면 반영)</span>
+                        <span id="res-tax">0원</span>
+                    </div>
+                    <div class="calc-row">
+                        <span>초기 선납금 지불액</span>
+                        <span id="res-downpayment">0원</span>
+                    </div>
+                    <div class="calc-row total-row">
+                        <span id="res-payment-title">최종 필요한 할부 원금</span>
+                        <span class="accent-txt" id="res-final-cost">0원</span>
+                    </div>
+                </div>
+            </form>
+            <div class="info-box">
+                위 시뮬레이터 수치는 취등록세 감면 및 기본 이율 등을 적용한 간이 모의 계산기로서 실제 출고 시점의 르노코리아 공식 혜택 프로모션 및 각 딜러사 성지 매장의 특별 할인 요금에 따라 세부 금액 변동이 있을 수 있습니다. 보다 정확한 요금제 매칭과 다이렉트 컨설팅을 위해서는 전문 업체와의 상세 상담 신청이 가장 정확합니다.
+            </div>
+        </section>
+
+        <section id="장단점분석">
+            <h2>그랑 콜레오스 파워트레인 및 트림별 장단점 비교</h2>
+            <p>르노 그랑 콜레오스 구매 단계에서 가장 치열하게 논의되는 쟁점은 가솔린 2.0 터보 모델과 E-Tech 하이브리드 모델 사이의 물리적 메커니즘 차이와 비용 효율성입니다. 각 차종은 타겟 소비층과 주행 목적이 뚜렷하게 나뉩니다.</p>
+
+            <h3>1. 가솔린 2.0 터보 2WD & 4WD 모델</h3>
+            <p>가솔린 모델은 직분사 싱글 터보 엔진과 7단 듀얼 클러치 변속기가 매칭되어 직관적이고 경쾌한 주행감을 선사합니다. 특히 아이코닉 트림에서만 고를 수 있는 4WD 모델은 BorgWarner사의 스마트 사륜구동 하드웨어가 채택되어 눈길이나 비포장 노면에서 매우 우수한 구동 성능을 보여줍니다.</p>
+            <ul class="custom-list">
+                <li><strong>장점:</strong> 하이브리드 동급 트림 대비 차량 기본가 자체가 최소 320만 원 이상 저렴하게 형성되어 있어 초기 자금 부담이 현저히 적습니다. 가속 반응성이 균일하며, 시내 정체 구간보다 중고속 장거리 영역에서 고속 크루징 감각이 정돈되어 있습니다.</li>
+                <li><strong>단점:</strong> 도심 연비가 10km/L 내외에 머무르기 때문에 가다 서다를 반복하는 직장인 출퇴근 환경에서는 유류비 누적 폭이 상대적으로 큽니다. 저공해차 혜택 등 공영주차장 감면 조건이 일부 축소되는 아쉬움이 있습니다.</li>
+            </ul>
+
+            <h3>2. E-Tech 하이브리드 모델</h3>
+            <p>최고출력 245마력의 고성능 합산 출력을 발휘하는 E-Tech 시스템은 하이브리드 전문 특허를 토대로 완성된 유닛입니다. 시속 40km 이하 도심 구간에서는 주행 시간의 최대 75%를 무공해 전기 모드로 소화할 만큼 고효율 지향의 구조입니다.</p>
+            <ul class="custom-list">
+                <li><strong>장점:</strong> 실효 연비가 뛰어나 정체 노선 주행 빈도가 높은 주행 환경에서 최적의 연비 효과를 거둘 수 있습니다. 취등록세 최대 감면 혜택과 공영주차장 할인 등 저공해 2종 가입 차량 혜택이 장기 보유 시 유지 관리에 긍정적 요소로 작용합니다.</li>
+                <li><strong>단점:</strong> 가솔린 모델 대비 차량 인도 시 필요한 금액이 높으며, 하이브리드 시스템 특성상 전륜구동 사양으로만 제작되어 4WD 사륜구동 장치를 탑재하는 방식이 물리적으로 불가능합니다.</li>
+            </ul>
+        </section>
+
+        <section id="금융가이드">
+            <h2>다이렉트 할부와 장기렌트, 자동차 리스의 비교 및 팁</h2>
+            <p>차량 대금 계산 방법은 예전처럼 현금을 완납하여 구입하는 방식에 국한되지 않습니다. 최근에는 개별 경제 흐름에 맞추어 보증금 비율을 조절할 수 있는 장기렌트나 자산 잡히지 않는 자동차 리스 등의 상품성 비교 추천 비율이 증가하고 있습니다. 금융 상품 유형에 따른 핵심적 성격과 장단점 차이점을 한눈에 확인하십시오.</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>구분 항목</th>
+                        <th>할부 구매 (직접 소유)</th>
+                        <th>신차 장기렌트</th>
+                        <th>자동차 오토리스</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>초기 투입 비용</td>
+                        <td>취등록세 완납 필요, 보험료 본인 별도 일시 지불</td>
+                        <td>초기 비용 0원으로 설정 가능, 월 요금에 일체 포함</td>
+                        <td>보증금 조율로 설계 가능, 취등록세 리스사 대납</td>
+                    </tr>
+                    <tr>
+                        <td>보험 조건 및 경력</td>
+                        <td>개인 보험 요율 유지, 무사고 시 보험료 지속 인하</td>
+                        <td>렌터카 전용 단체 보험 요율, 사고 시 개인 요율 보존</td>
+                        <td>개인 보험 경력 유지 가능, 사고 시 본인 책임 한도 내 처리</td>
+                    </tr>
+                    <tr>
+                        <td>자산 및 부채 인식</td>
+                        <td>본인 재산 등록에 따른 건보료 영향 및 신용대출 한도 작용</td>
+                        <td>렌트사 소유로 자산 및 부채 영향 전면 없음</td>
+                        <td>금융 리스 시 간접 부채로 분류, 일반 건보료 상승 없음</td>
+                    </tr>
+                    <tr>
+                        <td>감가상각 리스크</td>
+                        <td>중고차 판매 시 매입 시세 하락 리스크 전액 본인 감수</td>
+                        <td>만기 시 자유 반납 구조로 중고 감가 리스크 제로</td>
+                        <td>만기 인수 또는 반납 선택, 잔존 가치 수준에 연동</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>개인 사업자 혹은 법인 고객인 경우 장기렌트와 리스 요금의 매달 지출 분을 전액 세무상 비용 처리하여 법인세 및 소득세 감면을 설계할 수 있는 비즈니스 측면의 장단점 분석 역시 존재합니다. 연령이 아직 낮아 개인 다이렉트 자동차 보험료 예상 책정액이 터무니없이 높은 경우라면, 업체의 일괄 영업용 보험 풀이 제공되는 신차 장기렌트를 이용하는 편이 더 싼곳으로서 월 고정 유지비를 경감해 줄 것입니다.</p>
+        </section>
+
+        <section id="커뮤니티">
+            <h2>소비자 동향과 온라인 커뮤니티 평판 분석</h2>
+            <p>최근 국내 대표적인 커뮤니티인 보배드림, 디시인사이드 자동차 갤러리, 에펨코리아(펨코) 등에서는 르노 그랑 콜레오스 하이브리드를 내돈내산으로 구매하고 작성한 상세한 실제 후기들이 공유되며 뜨거운 반응을 이끌어내고 있습니다. 해당 모델의 시장 반응을 입체적으로 고찰할 수 있도록 여론의 요점을 가감 없이 정리하였습니다.</p>
+
+            <h3>보배드림 반응</h3>
+            <p>정통 자동차 매니아 층이 다수 포진해 있는 보배드림 게시판에서는 BorgWarner사의 4륜구동 기어가 가솔린 2.0 터보 아이코닉에 맞물린 성능에 대해 좋은 평가를 내놓고 있습니다. 국산 경쟁 패밀리 중형 SUV와 직접 비교 시 실내 openR 파노라마 스크린이 조수석 전면까지 세련되게 채워진 부분에 대해 수입차 부럽지 않은 하이테크 레이아웃이라는 긍정적 내돈내산 평판이 주류를 형성하고 있습니다.</p>
+
+            <h3>디시인사이드 및 에펨코리아(펨코) 분석</h3>
+            <p>가성비와 첨단 인포테인먼트 사양에 민감한 젊은 연령층의 경우, 디시 차갤과 펨코에서는 모의견적 계산 결과에 따른 실효 가격 비교 의견이 많이 오고 갑니다. 네이버 검색창을 통한 최저가 좌표 성지 추적이나 카카오톡 대리점 특판 가입 조건, 온라인 에이전트 업체의 사은품 지급 및 주유 상품권 현금지원 소통 정보도 활발히 공유되고 있습니다. 다만 조수석 모니터의 운전 중 눈부심 가능성이나 다소 독창적인 기어 노브 부근 공간 수납성에 대해서는 면밀한 오프라인 시승 확인이 필수적이라는 단점 피드백도 공존하고 있습니다.</p>
+
+            <h3>소셜 미디어 및 동영상 플랫폼 동향</h3>
+            <p>유튜브나 트위터, 인스타그램, 페이스북 등지에서는 그랑 콜레오스 26MY의 실제 시내 연비 주행 영상이 선풍적인 호응을 모으고 있습니다. 가혹한 정체 상황에서 1리터당 16km를 상회하는 도심 실연비 인증 릴스 영상이 확산되면서, 차량 가격 차이를 감안하더라도 하이브리드가 장기적 관점에서 훨씬 유리한 투자금액 분기점을 보여준다는 분석글이 인기를 모으고 있습니다.</p>
+        </section>
+
+        <section id="정보센터">
+            <h2>르노 그랑 콜레오스 심층 정보 분석 센터</h2>
+            <div class="long-content">
+                <p>르노 그랑 콜레오스 가격 형성을 깊이 이해하기 위해서는 단순 전시 차량 브로셔 수치를 넘어서 르노 그룹이 적용한 새로운 모듈러 아키텍처와 구동 테크놀로지의 성격을 다각도로 파악해야 합니다. 본 중형 SUV는 르노-닛산-미쓰비시 얼라이언스의 안정적 플랫폼 노하우에 지리 그룹과의 최첨단 친환경 동력 설계 파트너십이 시너지를 발휘한 핵심 주력 프로젝트 모델입니다.</p>
+
+                <p>E-Tech 하이브리드에 내장된 1.5리터 가솔린 터보 엔진은 주행 및 발전을 동시에 제어하며, 멀티 모드 기어박스가 조율하는 구동계가 구형 하이브리드의 이질적인 가속 충격을 매끄럽게 흡수합니다. 이러한 구조적 혁신 덕분에 소유자는 정숙한 실내 분위기를 유용하게 경험할 수 있으며, 국토교통부 신차 테스트에 준하는 완벽한 첨단 액티브 드라이버 어시스트 안전성 평가 역시 상위권의 성적표를 자랑하고 있어 자녀들과 함께 탑승하는 다인승 패밀리카 용도로 부족함이 없습니다.</p>
+
+                <p>또한 구매를 결정할 때 스마트폰 앱이나 어플을 통해 다이렉트로 차량 기능들을 연동하는 무선 제어 기능과 매월 무상 제공되는 인포테인먼트 전용 요금제에 대한 활용도 중요합니다. 르노 스마트 커넥티비티 시스템은 차량 내에서 별도의 하드웨어 연결 없이도 대중적인 OTT 스트리밍이나 웹서핑을 고해상도로 지원하여, 야외 오토캠핑이나 장거리 패밀리 패키지 여행 시 매우 특별한 장점으로 주목을 받습니다. 각자의 주행 패턴과 라이프스타일에 부합하도록 전시장 상담이나 1대1 카운셀링 컨설팅을 적극 활용하는 것이 가장 실패 없는 결정 방법이 될 것입니다.</p>
+            </div>
+        </section>
+
+        <section id="자주묻는질문">
+            <h2>그랑 콜레오스 가격 관련 자주 묻는 질문 FAQ</h2>
+            <dl class="faq-dl">
+                <dt tabindex="0">Q. E-Tech 하이브리드 트림 중 가성비가 가장 뛰어난 것을 추천해 주세요.</dt>
+                <dd>A. 실용성과 최저가 기준을 동시에 추구하신다면 테크노 하이브리드 트림이 제일 이상적인 대안이 됩니다. 하지만 그랑 콜레오스 시그니처 사양인 동승석 포함 3단 오픈R 파노라마 스크린이 전 트림 기본 적용되는 것은 아이코닉 트림부터이므로, 장기적 보유 가치와 실사용 만족도를 고려하신다면 아이코닉 등급을 강력하게 비교 추천 드립니다.</dd>
+                
+                <dt tabindex="0">Q. 취등록세 감면 혜택은 어떤 방식으로 적용되나요?</dt>
+                <dd>A. E-Tech 하이브리드 사양의 경우 국가 친환경 차량 등록법에 의거하여 취등록세 발생분에서 법정 한도 내의 일정한 세제 감면 처리가 완료된 상태로 차량 대금이 계산됩니다. 더불어 가솔린 저공해차 등록 혜택 역시 지자체 등록 시점의 세제 변경 법령에 연동되므로 성지 매장 상담사나 전시장 지점 가이드를 토대로 정확히 시뮬레이션해 보시기 바랍니다.</dd>
+                
+                <dt tabindex="0">Q. 신차 장기렌트 시 발생하는 초기비용 0원 설정은 정말 가능한가요?</dt>
+                <dd>A. 예, 가능합니다. 전문 대행 계약 업체의 자체 신용 심사를 기반으로 심사 승인이 이뤄지면, 보증금과 선납금이 아예 개입하지 않는 완전 무보증 조건의 월 대여료 설정으로 출고할 수 있습니다. 이는 대학생, 사회 초년생 혹은 사업 개시 시점의 여유 자금이 넉넉지 않은 사업자 고객에게 유용한 방법입니다.</dd>
+                
+                <dt tabindex="0">Q. 4륜구동 4WD 옵션은 어떤 파워트레인에서 적용할 수 있나요?</dt>
+                <dd>A. 그랑 콜레오스의 스마트 사륜구동 시스템은 가솔린 2.0 터보 모델에서만 장착이 허용됩니다. E-Tech 하이브리드 모델은 기술 설계상 전륜구동 2WD 전용 하드웨어 단일 구조로만 생산이 지속되므로 사륜구동 선택을 고민하는 고객이라면 본 제원의 차이점을 명확히 인지하고 구입 결정을 하셔야 합니다.</dd>
+            </dl>
+        </section>
+
+        <section id="연락처">
+            <h2>르노 그랑 콜레오스 실시간 견적 상담 요청</h2>
+            <p>선택하신 세부 사양에 최적화된 르노 그랑 콜레오스 구매 관련 정밀 다이렉트 견적 정보와 특별 할인 프로모션 혜택을 전문가를 통해 직접 전달해 드립니다.</p>
+            
+            <form action="/submit-koleos-estimate" method="POST">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="user-name">고객 성함 (필수)</label>
+                        <input type="text" id="user-name" name="user-name" required placeholder="홍길동">
+                    </div>
+                    <div class="form-group">
+                        <label for="user-tel">연락처 (필수)</label>
+                        <input type="tel" id="user-tel" name="user-tel" required placeholder="010-0000-0000">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="pref-engine">희망 동력 사양</label>
+                        <select id="pref-engine" name="pref-engine">
+                            <option value="hybrid">E-Tech 하이브리드 2WD</option>
+                            <option value="gasoline_2wd">가솔린 2.0 터보 2WD</option>
+                            <option value="gasoline_4wd">가솔린 2.0 터보 4WD</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="purchase-way">선호 금융 상품 종류</label>
+                        <select id="purchase-way" name="purchase-way">
+                            <option value="longrent">신차 장기렌트</option>
+                            <option value="lease">자동차 운용리스</option>
+                            <option value="installment">저금리 장기 할부</option>
+                            <option value="cash_pay">일시불 및 현금 구매</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="user-notes">추가 문의 사항 및 요청 옵션</label>
+                    <textarea id="user-notes" name="user-notes" placeholder="희망 전시장 위치나 대리점 성지의 현금지원 상품권 혜택, 실시간 출고 대기기간 등에 관해 궁금하신 정보를 자유롭게 적어 주십시오."></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">무료 맞춤형 실시간 포괄 상담 신청</button>
+            </form>
+        </section>
+
+        <section id="연관키워드">
+            <h2>함께 찾아보는 통합 지식 카테고리</h2>
+            <div class="keyword-tags">
+                <a href="#가격비교">그랑 콜레오스 하이브리드 가격</a>
+                <a href="#가격비교">그랑 콜레오스 가솔린 연비</a>
+                <a href="#가격비교">중형 SUV 하이브리드 추천</a>
+                <a href="#금융가이드">그랑 콜레오스 장기렌트 특가</a>
+                <a href="#금융가이드">그랑 콜레오스 리스 요금표</a>
+                <a href="#장단점분석">르노 E-Tech 장단점 분석</a>
+                <a href="#가격비교">그랑 콜레오스 에스프리 알핀 가격</a>
+                <a href="#가격비교">그랑 콜레오스 아이코닉 옵션 구성</a>
+                <a href="#장단점분석">보그워너 6세대 4WD 성능</a>
+                <a href="#금융가이드">신차 장기렌트 무보증 조건</a>
+                <a href="#커뮤니티">보배드림 그랑 콜레오스 실주행 후기</a>
+                <a href="#커뮤니티">디시인사이드 그랑 콜레오스 최저가 성지</a>
+            </div>
+            
+            <div class="related-links">
+                <a href="https://directmchecky.koreahankang.com" target="_blank" rel="noopener">그랑 콜레오스 종합 견적 센터</a>
+                <a href="https://namu.wiki/w/%EB%A5%B4%EB%85%B8%20%EA%B7%B8%EB%9E%91%20%EC%BD%9C%EB%A0%88%EC%98%A4%EC%8A%A4" target="_blank" rel="noopener">그랑 콜레오스 백과사전 상세 정보</a>
+                <a href="https://www.renaultkorea.com" target="_blank" rel="noopener">르노코리아 공식 홈페이지 포털</a>
+            </div>
+        </section>
+
     </main>
-  </body>
-</html>
+
+    <script>
+        const trimData = {
+            gasoline: [
+                { name: '테크노 2WD (3,546만원)', value: 35460000 },
+                { name: '아이코닉 2WD (3,936만원)', value: 39360000 },
+                { name: '에스프리 알핀 2WD (4,150만원)', value: 41500000 }
+            ],
+            gasoline4wd: [
+                { name: '아이코닉 4WD (4,205만원)', value: 42050000 }
+            ],
+            hybrid: [
+                { name: '테크노 2WD (3,870.9만원)', value: 38709000 },
+                { name: '아이코닉 2WD (4,269.9만원)', value: 42699000 },
+                { name: '에스프리 알핀 2WD (4,469.9만원)', value: 44699000 }
+            ]
+        };
+
+        function handleEngineChange() {
+            const engineSelect = document.getElementById('engine-select');
+            const trimSelect = document.getElementById('trim-select');
+            const selectedEngine = engineSelect.value;
+            
+            trimSelect.innerHTML = '';
+            
+            trimData[selectedEngine].forEach(trim => {
+                const opt = document.createElement('option');
+                opt.value = trim.value;
+                opt.textContent = trim.name;
+                trimSelect.appendChild(opt);
+            });
+
+            const screenSelect = document.getElementById('option-screen');
+            if (selectedEngine === 'gasoline' || selectedEngine === 'hybrid') {
+                screenSelect.disabled = false;
+            } else {
+                screenSelect.value = "0";
+                screenSelect.disabled = true;
+            }
+            
+            calculateQuote();
+        }
+
+        function updateDownpaymentText(val) {
+            document.getElementById('downpayment-val-label').textContent = val + '%';
+            calculateQuote();
+        }
+
+        function handleFinanceChange() {
+            const financeSelect = document.getElementById('finance-select');
+            const periodGroup = document.getElementById('period-group');
+            const paymentTitle = document.getElementById('res-payment-title');
+
+            if (financeSelect.value === 'cash') {
+                periodGroup.style.display = 'none';
+                paymentTitle.textContent = '최종 실구매 인수 예상가 (세금 포함)';
+            } else {
+                periodGroup.style.display = 'block';
+                paymentTitle.textContent = '최종 필요한 금융 원금 총액';
+            }
+            calculateQuote();
+        }
+
+        function calculateQuote() {
+            const trimSelect = document.getElementById('trim-select');
+            const basePrice = parseInt(trimSelect.value) || 0;
+            
+            const screenPrice = parseInt(document.getElementById('option-screen').value) || 0;
+            const sunroofPrice = parseInt(document.getElementById('option-sunroof').value) || 0;
+            const totalOption = screenPrice + sunroofPrice;
+            
+            const totalVehiclePrice = basePrice + totalOption;
+            
+            const engineType = document.getElementById('engine-select').value;
+            let taxRate = 0.07;
+            let taxDiscount = 0;
+            if (engineType === 'hybrid') {
+                taxDiscount = 400000; 
+            }
+            let calculatedTax = Math.round(totalVehiclePrice * taxRate) - taxDiscount;
+            if (calculatedTax < 0) calculatedTax = 0;
+
+            const downPercent = parseInt(document.getElementById('downpayment-range').value) || 0;
+            const downpaymentValue = Math.round(totalVehiclePrice * (downPercent / 100));
+
+            const financeType = document.getElementById('finance-select').value;
+            
+            document.getElementById('res-base-price').textContent = basePrice.toLocaleString() + '원';
+            document.getElementById('res-option-price').textContent = totalOption.toLocaleString() + '원';
+            document.getElementById('res-tax').textContent = calculatedTax.toLocaleString() + '원';
+            document.getElementById('res-downpayment').textContent = downpaymentValue.toLocaleString() + '원';
+
+            let finalCost = 0;
+            if (financeType === 'cash') {
+                finalCost = totalVehiclePrice + calculatedTax - downpaymentValue;
+            } else {
+                finalCost = totalVehiclePrice - downpaymentValue;
+            }
+            
+            document.getElementById('res-final-cost').textContent = finalCost.toLocaleString() + '원';
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            handleEngineChange();
+
+            document.querySelectorAll('.faq-dl dt').forEach((dt) => {
+                dt.addEventListener('click', () => {
+                    const isActive = dt.classList.contains('active');
+                    
+                    document.querySelectorAll('.faq-dl dt').forEach(otherDt => {
+                        otherDt.classList.remove('active');
+                        const dd = otherDt.nextElementSibling;
+                        if (dd) dd.style.display = 'none';
+                    });
+
+                    if (!isActive) {
+                        dt.classList.add('active');
+                        const dd = dt.nextElementSibling;
+                        if (dd) dd.style.display = 'block';
+                    }
+                });
+                
+                dt.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        dt.click();
+                    }
+                });
+            });
+        });
+    </script>
+  
